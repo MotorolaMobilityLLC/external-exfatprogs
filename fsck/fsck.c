@@ -1713,6 +1713,9 @@ err:
 		exit_code = FSCK_EXIT_CORRECTED;
 	else
 		exit_code = FSCK_EXIT_NO_ERRORS;
+	if ((exit_code == FSCK_EXIT_CORRECTED) &&
+		(exfat_stat.error_count == exfat_stat.fixed_count))
+		exit_code = FSCK_EXIT_NO_ERRORS;
 
 	if (exfat_fsck.buffer_desc)
 		exfat_free_buffer(exfat_fsck.buffer_desc, 2);
