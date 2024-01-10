@@ -9,13 +9,18 @@ package {
     default_applicable_licenses: ["external_exfatprogs_license"],
 }
 
-cc_library_static {
-    name: "libexfat",
-
+cc_binary {
+    name: "exfat2img",
+    cflags: [
+        "-Wno-pointer-arith",
+        "-Wno-tautological-compare",
+        "-Wno-unused-parameter",
+        "-Wno-unused-result",
+        "-Wno-unused-variable",
+    ],
     srcs: [
-        "libexfat.c",
-        "exfat_fs.c",
-        "exfat_dir.c",
+        "exfat2img.c",
     ],
     defaults: ["exfatprogs-defaults"],
+    static_libs: ["libexfat"],
 }
